@@ -1,0 +1,36 @@
+<!-- Auteur : Corentin Robin -->
+<!DOCTYPE html>
+
+<html>
+	<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Selva</title>
+
+        <link rel="stylesheet" href="../styles/selva.css">
+        <script src="../scripts/selva.min.js"></script>
+	</head>
+
+<body>
+
+    <script>
+        var n = 1000, x = 50;
+    </script>
+
+    <h2 selva-value="Selva test with {n} elements"></h2>
+
+    <p>Last rendering duration: <i selva-value="{ Selva.lastRenderingDuration } seconds, { Math.round(n / Selva.lastRenderingDuration) } elements per second"></i></p>
+
+    <div>
+        Value of x: <input type="range" selva-value="{x}"> <input type="number" selva-value="{x}">
+    </div>
+
+    <script>
+        for(var i = 0; i < n; i++) document.write(`<b selva-value="x * ${i} = {x} * ${i} = { x * ${i} }"></b> ; `);
+    </script>
+
+    
+
+    <p class="copyright">&copy; 2020 Corentin ROBIN</p>
+</body>
+</html>

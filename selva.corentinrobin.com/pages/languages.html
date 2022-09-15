@@ -1,0 +1,28 @@
+<!-- Auteur : Corentin Robin -->
+<!DOCTYPE html>
+
+<html>
+	<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Selva</title>
+        
+        <link rel="stylesheet" href="../styles/selva.css">
+        <script src="../scripts/selva.min.js"></script>
+
+        <script>
+            var language = "english";
+        </script>
+	</head>
+
+<body selva-language="{ language }" selva-language-folder="../languages">
+
+    <h1 selva-text="title"></h1>
+
+    <p selva-text="introduction"></p>
+
+    <p><label selva-text="selectLanguage"></label>: <select selva-value="{ language }"><option>english</option><option>french</option><option>spanish</option></select></p>
+
+    <p class="copyright">&copy; 2020 Corentin ROBIN</p>
+</body>
+</html>

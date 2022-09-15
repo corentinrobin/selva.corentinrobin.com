@@ -1,0 +1,209 @@
+<!-- Auteur : Corentin Robin -->
+<!DOCTYPE html>
+
+<html>
+	<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Selva</title>
+
+        <link rel="stylesheet" href="styles/selva.css">
+        <link rel="icon" href="images/logo.svg">
+
+        <script src="scripts/selva.min.js"></script>
+	</head>
+
+<body>
+
+    <h1><img src="images/logo.svg"> Selva</h1>
+
+    <script>
+        // introduction
+        var color = "#189ca4";
+
+        // inputs
+        var a = 12, b = "Hello", c = "#4bb516", d = true, e = "Singapore", f, g = 50;
+
+        // form
+        var login = "Gérard Depardieu", emailAddress = "cyrano@bergerac.fr", gender = "male", password = "cyrano2bergerac";
+
+        // informative UI
+        var character = "George",
+            band =
+            {
+                "John" : {"role" : "rhythm guitarist", "image" : "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/John_Lennon_1969_%28cropped%29.jpg/166px-John_Lennon_1969_%28cropped%29.jpg"},
+                "Paul" : {"role" : "bassist", "image" : "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Paul_McCartney_black_and_white_2010.jpg/171px-Paul_McCartney_black_and_white_2010.jpg"},
+                "George" : {"role" : "lead guitarist", "image" : "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/George_Harrison_1974.jpg/184px-George_Harrison_1974.jpg"},
+                "Ringo" : {"role" : "drummer", "image" : "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Ringo_Starr_and_all_his_band_%288470866906%29.jpg/189px-Ringo_Starr_and_all_his_band_%288470866906%29.jpg"}
+            },
+            code = `character = 'Ringo';
+login = 'Jean-Paul Belmondo' ; emailAddress = 'jpb@cerito.fr';`;
+
+        // standalone application
+        var myApplication =
+        {
+            title : "My application title",
+            version : 2.1,
+            text : "My application text."
+        };
+        
+        </script>
+
+    <h2>Introduction</h2>
+
+    <p>The purpose of Selva is to keep your UI updated with your application data.</p>
+
+    <p>It uses only new attributes and a placeholder syntax close to JavaScript syntax, to keep things homogeneous.</p>
+
+    <h2>Basics</h2>
+
+    <p>Selva uses a new class of attributes: <code>selva-*</code>.</p>
+
+    <p>Those attributes will target the matched HTML attribute: <code>selva-style</code> will change the <code>style</code> attribute, <code>selva-src</code> the <code>src</code> attribute, etc.</p>
+
+    <o>Only one exception: <code>selva-value</code>: this will handle any type of content (value, checked, innerHTML), and bind the JS value to the element if it's an input.</o>
+
+    <p>The application variables can be either global ones or namespaced through an object.</p>
+
+    <p><code>selva-value="{myApplication.value}"</code> and <code>selva-value="{value}"</code> will both work.</p>
+
+    <p>Selva can take <code>{...}</code> placeholders, where it will evaluate what is inside the brackets and replace it with the result.</p>
+
+    <p>For example, if you have a <code>color</code> variable, and you add a <code>selva-style="color: {color}"</code> to an element, your element will always have its color updated with the application variable.</p>
+
+    <p>If you add <code>selva-value="{color}"</code> to an color input, Selva will bind the input to the color value.</p>
+
+    <p>Here you go: <input type="color" selva-value="{color}"> <span selva-style="color: {color}" selva-value="this text color is {color}"></span>.</p>
+
+    <p>That's pretty much it for the introduction, see below for examples!</p>
+
+    <p>Note: as it's still a prototype, please use Chrome or Firefox for better stability, Safari still does weird things sometimes.</p>
+
+    <h2>Multilingual applications</h2>
+
+    <p>With Selva, you can easily switch languages in your app.</p>
+
+    <p>First, add a <code>selva-language-folder</code> attribute to the body tag, containing the path to the language folder.</p>
+
+    <p>This folder must contain JSON files named as follow: <code>&lt;language&gt;.json</code>.</p>
+
+    <p>Each JSON file must have a simple structure key -> text.</p>
+
+    <p>Keys must be the same over the JSON files, only the text value should change.</p>
+
+    <p>Then simply add the <code>selva-language</code> attribute to the body tag, Selva will automatically load the correct file in the folder.</p>
+
+    <p>Finally, use the <code>selva-text</code> attribute wherever you need to display some translated text.</p>
+
+    <p>To see it in action, <a href="pages/languages.html" target="_blank">click here</a> to see a quick example.</p>
+
+    <h2>Inputs</h2>
+
+    <div class="inputs">
+        <div>
+            Set the value of a: <input type="number" selva-value="{a}"> <input type="range" selva-value="{a}"> ; a : <span selva-value="{a}"></span>
+        </div>
+
+        <div>
+            Set the value of b: <input type="text" selva-value="{b}"> <textarea selva-value="{b}"></textarea> ; b : <span selva-value="{b}"></span>
+        </div>
+
+        <div>
+            Set the value of c: <input type="color" selva-value="{c}"> ; c : <span selva-value="{c}" selva-style="color : {c}"></span>
+        </div>
+
+        <div>
+            Set the value of d: <input type="checkbox" selva-value="{d}"> ; d : <span selva-value="{d}"></span>
+        </div>
+
+        <div>
+            Set the value of e: <select selva-value="{e}"><option>Singapore</option><option>Kuching</option><option>Medellín</option></select> ;
+            
+            <input type="radio" value="Singapore" id="singapore" name="city" selva-value="{e}"> <label for="singapore">Singapore</label>
+            <input type="radio" value="Kuching" id="kuching" name="city" selva-value="{e}"> <label for="kuching">Kuching</label>
+            <input type="radio" value="Medellín" id="medellin" name="city" selva-value="{e}"> <label for="medellin">Medellín</label>
+            
+            ; e : <span selva-value="{e}"></span>
+        </div>
+
+        <div>
+            Get the value of f: <input type="file" selva-value="{f}"> ; f : <span selva-value="{f}"></span>
+        </div>
+
+        <div>
+            Set the value of g: <input type="range" selva-value="{g}">% <progress selva-value="{g}" max="100"></progress> ; g : <span selva-value="{g}%"></span>
+        </div>
+    </div>
+
+    <h2>Examples</h2>
+
+    <p>See below few examples, and check the source code to find out how it's done.</p>
+
+    <h3>Form</h3>
+
+    <div class="example">
+        <div>
+            <label>Login</label>
+            <input type="text" selva-value="{login}">
+        </div>
+
+        <div>
+            <label>Email address</label>
+            <input type="text" selva-value="{emailAddress}">
+        </div>
+
+        <div>
+            <label>Gender</label>
+            <select selva-value="{gender}"><option>male</option><option>female</option></select>
+        </div>
+
+        <div>
+            <label>Password</label>
+            <input type="password" selva-value="{password}">
+        </div>
+
+        <div selva-value="What you get in JS: login: {login} ; email: {emailAddress} ; gender: {gender} ; password: {password}"></div>
+    </div>
+
+    <h3>Informative UI</h3>
+
+    <div class="example">
+        <div>
+            Select a character: <select selva-value="{character}"><option>John</option><option>Paul</option><option>George</option><option>Ringo</option></select>
+        </div>
+
+        <div selva-value="{character} is the { band[character].role } of the Beatles."></div>
+
+        <img selva-src="{ band[character].image }">
+    </div>
+
+    <h3>Standalone application</h3>
+
+    <div class="example">
+        <h4 selva-value="{myApplication.title}"></h4>
+        <i selva-value="Version: {myApplication.version}"></i>
+        <p selva-value="{myApplication.text}"></p>
+        <textarea selva-value="{myApplication.text}"></textarea>
+    </div>
+
+    <h2>Sandbox</h2>
+
+    <div>
+        <input type="button" value="Execute the code below" onclick="eval(code)">
+    </div>
+
+    <div>
+        <textarea selva-value="{code}" class="code"></textarea>
+    </div>
+    
+    <h3>Examples</h3>
+
+    <ul>
+        <li><a href="pages/weather.html" target="_blank">weather app</a></li>
+        <li><a href="pages/git_users.html" target="_blank">git users app</a></li>
+        <li><a href="pages/speed_test.html" target="_blank">speed test</a></li>
+    </ul>
+
+    <p class="copyright">&copy; 2020 Corentin ROBIN</p>
+</body>
+</html>

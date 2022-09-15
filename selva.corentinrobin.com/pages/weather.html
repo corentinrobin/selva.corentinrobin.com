@@ -1,0 +1,53 @@
+<!-- Auteur : Corentin Robin -->
+<!DOCTYPE html>
+
+<html>
+	<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Selva</title>
+        
+        <link rel="stylesheet" href="../styles/selva.css">
+        <script src="../scripts/selva.min.js"></script>
+	</head>
+
+<body>
+
+    <script>
+        // exemple : http://api.openweathermap.org/data/2.5/weather?q=singapore&appid=7d51df05cdbf4e6f65b4f8c94248b07d&units=metric
+        var key = "7d51df05cdbf4e6f65b4f8c94248b07d", city = "Singapore", unit = "metric";
+        var cityWeather = "Please choose a city.";
+
+        getWeather = function()
+        {
+            if(city.length > 2)
+            {
+                var request = new XMLHttpRequest();
+                request.addEventListener("load", showWeather);
+                request.open("GET", "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + key + "&units=" + unit);
+                request.send();
+            }
+        }
+
+        showWeather = function()
+        {
+            var weather = JSON.parse(this.responseText);
+
+            cityWeather = "Weather in " + city + ": temperature: " + weather.main.temp + "°C ; humidity: " + weather.main.humidity + "%";
+        }
+    </script>
+
+    <h2>Simple weather app with Selva</h2>
+
+    <div>
+        <label>City:</label>
+        <input type="text" selva-value="{ city }">
+        <select selva-value="{ unit }"><option value="metric">metric</option><option value="imperial">imperial</option></select>
+        <input type="button" value="Get the weather" onclick="getWeather()">
+    </div>
+
+    <p selva-value="{ cityWeather }"></p>
+
+    <p class="copyright">&copy; 2020 Corentin ROBIN</p>
+</body>
+</html>

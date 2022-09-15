@@ -1,0 +1,62 @@
+<!-- Auteur : Corentin Robin -->
+<!DOCTYPE html>
+
+<html>
+	<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Selva</title>
+        
+        <link rel="stylesheet" href="../styles/selva.css">
+        <script src="../scripts/selva.min.js"></script>
+	</head>
+
+<body>
+
+    <script>
+        var name = "Bob", list = "";
+
+        searchUsers = function()
+        {
+            if(name.length > 2)
+            {
+                list = "Loading...";
+
+                var request = new XMLHttpRequest();
+                request.addEventListener("load", showUsers);
+                request.open("GET", "https://api.github.com/search/users?q=" + name);
+                request.send();
+            }
+        }
+
+        showUsers = function()
+        {
+            var users = JSON.parse(this.responseText), user, i;
+
+            list = "";
+
+            for(i = 0; i < users.items.length; i++)
+            {
+                user = users.items[i];
+
+                list += `<div>
+                            <div><img src="${ user.avatar_url }"></div>
+                            <div>
+                                <div><a href="${ user.html_url }"><b>${ user.login }</b></a> <i>(ID: ${ user.id })</i></div>
+                            </div>
+                         </div>`;
+            }
+        }
+    </script>
+
+    <h2>Git users search with Selva</h2>
+
+    <div>
+        <label>Name:</label> <input type="text" selva-value="{name}"> <input type="button" value="Search" onclick="searchUsers()">
+    </div>
+
+    <div selva-value="{list}"></div>
+
+    <p class="copyright">&copy; 2020 Corentin ROBIN</p>
+</body>
+</html>

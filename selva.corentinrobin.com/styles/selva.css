@@ -1,0 +1,163 @@
+@font-face
+{
+	font-family : PTSans-Regular;
+	src : url(../fonts/PTSans-Regular.ttf);
+}
+
+@font-face
+{
+	font-family : Inconsolata-Light;
+	src : url(../fonts/Inconsolata-Light.ttf);
+}
+
+@media only screen and (max-width: 1099px)
+{
+    body
+    {
+        width : auto !important;
+        margin : 0 20px !important;
+    }
+
+    h1
+    {
+        padding : 10px 20px !important;
+    }
+
+    textarea.code
+    {
+        width : calc(100% - 20px) !important;
+    }
+
+    div.inputs input[type="text"],div.inputs input[type="number"],div.inputs input[type="range"],div.inputs textarea,div.inputs select
+    {
+        width : 100% !important;
+        display : block !important;
+    }
+
+    div.example input,div.example select
+    {
+        width : 100% !important;
+    }
+}
+
+h1
+{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: #bdd9c1;
+    margin: 0;
+    padding: 10px calc((100% - 1100px) / 2);
+    box-shadow: 0 0 2px 1px #a2a2a2;
+}
+
+h1 img
+{
+    width: 45px;
+    height: auto;
+    vertical-align: -11px;
+    margin-right: 5px;
+}
+
+body
+{
+    padding-top : 70px;
+    color : #718096;
+    background-color : #dceade;
+    width : 1100px;
+    margin : auto;
+}
+
+body,input,textarea
+{
+    font-size : 1em;
+    font-family: 'PTSans-Regular';
+    vertical-align: middle;
+}
+
+input[type="button"]
+{
+    border-radius : 4px;
+    border : none;
+    color : white;
+    padding : 4px 8px;
+    margin : 3px;
+    cursor : pointer;
+}
+
+code
+{
+    vertical-align: 1px;
+    padding : 4px;
+    background-color : #b4ddab;
+    color : black;
+    border-radius : 4px;
+}
+
+textarea.code
+{
+    width : 600px;
+    height : 200px;
+    font-family: Inconsolata-Light;
+    padding : 10px;
+}
+
+img
+{
+    vertical-align : middle;
+    width : auto;
+    height : 100px;
+}
+
+div.variables > div
+{
+    margin : 10px 0;
+    padding : 5px;
+}
+
+div.variables > div > *
+{
+    vertical-align : middle;
+}
+
+div.variables > div:nth-child(even)
+{
+    background-color : #cbdfd2;
+}
+
+p.copyright
+{
+    text-align : right;
+}
+
+input[type="button"]
+{
+    background-color : #389bb2;
+}
+
+div.example > div
+{
+    margin : 10px 0;
+}
+
+div.example > div label
+{
+    display : block;
+    font-weight : bold;
+}
+
+div.inputs > div
+{
+    padding : 10px;
+}
+
+div.inputs > div:nth-child(even)
+{
+    background-color: #f0f2f0;
+}
+
+div.inputs > div:nth-child(odd)
+{
+    background-color: #d9d9ea;
+}
